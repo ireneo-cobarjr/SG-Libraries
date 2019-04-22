@@ -1,0 +1,1 @@
+This is a styled border with a snake-like design roaming around the element.
