@@ -1,0 +1,1 @@
+This is a collection of CSS/JS stuff that may be re-used for other projects.
