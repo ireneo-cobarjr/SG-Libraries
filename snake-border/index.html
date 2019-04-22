@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <link rel="stylesheet" href="./snake-border.css">
+        
+        <title>Snake Border</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                display: grid;
+                place-items: center;
+                width: 100vw;
+                height: 100vh;
+                background-color: #F5F5F5;
+            }
+            .btn {
+                width: 200px;
+                padding: 25px;
+                background-color: #9E9E9E;
+                border: none;
+                font-size: 48px;
+                box-sizing: border-box;
+                color: #FAFAFA;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <button class="btn snake-border">
+                Hello!
+            </button>
+        </div>
+
+        <script src="./snake-border.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                snakeBorder();
+            })
+        </script>
+    </body>
+</html>

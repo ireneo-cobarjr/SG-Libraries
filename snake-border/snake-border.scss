@@ -1,0 +1,61 @@
+.snake-border {
+    position: relative;
+    overflow: hidden;
+
+    & .snake-1,
+    & .snake-2,
+    & .snake-3,
+    & .snake-4  {
+        position: absolute;
+    }
+
+    & .snake-1 {
+        top: 0;
+        left: 0;
+        width: 100%;
+        animation-name: snake1Animation;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    & .snake-2 {
+        top: 0;
+        right: 0;
+        height: 100%;
+        animation-name: snake2Animation;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    & .snake-3 {
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        animation-name: snake3Animation;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    & .snake-4 {
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        animation-name: snake4Animation;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+}
+
+@keyframes snake1Animation {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%);  }
+}
+@keyframes snake2Animation {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(100%);  }
+}
+@keyframes snake3Animation {
+    0%   { transform: translateX(100%);  }
+    100% { transform: translateX(-100%); }
+}
+@keyframes snake4Animation {
+    0%   { transform: translateY(100%);  }
+    100% { transform: translateY(-100%); }
+}
