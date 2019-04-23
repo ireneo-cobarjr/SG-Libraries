@@ -2,7 +2,7 @@ var defaultSnakeBorder = {
     elem   : 'snake-border',
     color1 : '#757575',
     color2 : '#424242',
-    width  : '2',
+    width  : 2,
     speed  : 2
 
 }
