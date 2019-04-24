@@ -19,6 +19,7 @@ function snakeBorder( arg = defaultSnakeBorder ) {
 }
 
 function snakeBorderApplyStyle (ApplyStyle, e) {
+    addSnakeBorderClass(e);
     for (var snakes = 4; snakes > 0; snakes--) {
         var s = document.createElement('div')
         s.classList.add(`snake-${snakes}`)
@@ -43,4 +44,17 @@ function snakeBorderApplyStyle (ApplyStyle, e) {
             }
         e.insertBefore(s, e[0])
     }
+}
+
+function addSnakeBorderClass (x) {
+    var name, arr;
+    if (x.classList) {
+    x.classList.add("snake-border");
+    } else {
+    name = "snake-border";
+    arr = x.className.split(" ");
+    if (arr.indexOf(name) == -1) {
+        x.className += " " + name;
+    }
+    } 
 }

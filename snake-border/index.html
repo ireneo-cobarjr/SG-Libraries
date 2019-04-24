@@ -35,7 +35,7 @@
     </head>
     <body>
         <div class="container">
-            <button class="btn snake-border">
+            <button class="btn" id="test">
                 Hello!
             </button>
         </div>
@@ -43,7 +43,7 @@
         <script src="./snake-border.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                
+                defaultSnakeBorder.elem = "#test"
                 snakeBorder();
 
             })
