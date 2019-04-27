@@ -27,7 +27,7 @@
                 border: none;
                 font-size: 48px;
                 box-sizing: border-box;
-                color: #FAFAFA;
+                color: #81D4FA;
                 cursor: pointer;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
@@ -43,8 +43,8 @@
         <script src="./snake-border.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                defaultSnakeBorder.elem = "#test"
-                snakeBorder();
+
+                snakeBorder.set({elem: '#test', color2: '#81D4FA', color1: '#E1F5FE'});
 
             })
         </script>
