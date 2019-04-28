@@ -63,10 +63,53 @@ const snakeBorder = {
             } 
         }
         
+    },
+    unSet: function (elem) {
+        if ( elem.startsWith('#') ) {
+            removeStyle(document.querySelector(elem))
+    
+        } else {
+            Array.prototype.forEach.call(document.getElementsByClassName(elem), el => {
+                removeStyle(el)
+            })
+        }
+
+        function removeStyle (e) {
+            for (x = 4; x > 0; x--) {
+                var c = e.querySelector(`.snake-${x}`)
+                if (c) {
+                    e.removeChild(c)
+                }
+            }
+
+            var name, arr;
+            if (e.classList) {
+                e.classList.remove("snake-border");
+            } else {
+                name = "snake-border";
+                arr = e.className.split(" ");
+                if (arr.indexOf(name) != -1) {
+                    e.replace(name, '')
+                }
+            } 
+        }
+
+    },
+    changeColor: function (param = {}) {
+        var arg = {
+            color1 : 'no_value',
+            color2 : 'no_value',
+            width  : -1,
+            speed  : -1
+        }
+
+        Object.assign(arg, param)
+
+        function changeStyle (el) {
+            console.log(arg)
+        }
     }
 }
 
 
 //On the road features would be changing properties, setting distance from the element and removing snakeBorders dynamically.
-//option to add custom border since adding a border to the element will make the snake-border move between the border and the content.
-//wrapping the element might solve it. --solved

@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <link rel="stylesheet" href="./snake-border.css">
-        
+                
         <title>Snake Border</title>
         <style>
             body {
@@ -18,20 +18,37 @@
                 place-items: center;
                 width: 100vw;
                 height: 100vh;
-                background-color: white;
+                background: #00BCD4;
             }
             .btn {
                 width: 200px;
                 padding: 25px;
-                background-color: #9E9E9E;
+                background-color: #00BCD4;
                 border: 2px solid #E1F5FE;
                 font-size: 48px;
                 box-sizing: border-box;
-                color: #81D4FA;
+                color: black;
                 cursor: pointer;
             }
             #test {
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                position: relative;
+                overflow: hidden;
+            }
+            .glisten {
+                position: absolute;
+                height: 200%;
+                width: 200%;
+                background: white;
+                top: 200%;
+                left: -200%;
+                opacity: 0.25;
+                transform: rotate(45deg);
+                transition: 0.5s linear;
+            }
+            .btn:hover .glisten {
+                left: 100%;
+                top: -200%;
             }
         </style>
     </head>
@@ -39,7 +56,8 @@
         <div class="container">
             <div id="test">
                 <button class="btn">
-                    Hello!
+                    <div class="glisten"></div>
+                    <span>Hello!</span>
                 </button>
             </div>
         </div>
@@ -49,6 +67,17 @@
             document.addEventListener("DOMContentLoaded", function() {
 
                 snakeBorder.set({elem: '#test', color2: '#81D4FA', color1: '#E1F5FE'});
+                var set = true
+                var btn = document.querySelector('.btn')
+                btn.addEventListener('click', () => {
+                    if (set) {
+                        snakeBorder.unSet('#test')
+                        set = !set
+                    } else {
+                        snakeBorder.set({elem: '#test', color2: '#81D4FA', color1: '#E1F5FE'});
+                        set = !set
+                    }
+                })
 
             })
         </script>
