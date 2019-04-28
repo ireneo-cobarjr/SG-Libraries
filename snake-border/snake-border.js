@@ -9,8 +9,6 @@ const snakeBorder = {
         } 
 
         Object.assign(args, param)
-        console.log(args)
-
         snakeBorder(args);
 
         function snakeBorder( arg = defaultSnakeBorder ) {
@@ -69,6 +67,6 @@ const snakeBorder = {
 }
 
 
-//todo: change API, creating an object. ---done
-//expected resulting API will make setting this design via a call to snakeBorder.set()
-//On the road features would be changing properties and removing snakeBorders dynamically.
+//On the road features would be changing properties, setting distance from the element and removing snakeBorders dynamically.
+//option to add custom border since adding a border to the element will make the snake-border move between the border and the content.
+//wrapping the element might solve it. --solved
