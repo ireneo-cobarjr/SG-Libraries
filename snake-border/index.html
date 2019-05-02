@@ -60,6 +60,7 @@
                     <span>Hello!</span>
                 </button>
             </div>
+            <button id="changeColor">Change color</button>
         </div>
 
         <script src="./snake-border.js"></script>
@@ -76,6 +77,17 @@
                     } else {
                         snakeBorder.set({elem: '#test', color2: '#81D4FA', color1: '#E1F5FE'});
                         set = !set
+                    }
+                })
+                var changeColor = document.querySelector('#changeColor')
+                var changeColorStatus = true
+                changeColor.addEventListener('click', () => {
+                    if (changeColorStatus) {
+                        snakeBorder.changeColor({elem: '#test', color2: '#00E676', color1: '#E8F5E9'})
+                        changeColorStatus = !changeColorStatus
+                    } else {
+                        snakeBorder.changeColor({elem: '#test', color2: '#81D4FA', color1: '#E1F5FE'})
+                        changeColorStatus = !changeColorStatus
                     }
                 })
 

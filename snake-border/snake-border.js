@@ -31,19 +31,31 @@ const snakeBorder = {
         
                     switch (snakes) {
                         case 4:
-                        s.setAttribute('style', `width:${ApplyStyle.width}px;background:linear-gradient(to top, ${ApplyStyle.color1},${ApplyStyle.color2});animation-duration:${ApplyStyle.speed}s;animation-delay:${delay}s`);
+                        s.setAttribute('style', `width:${ApplyStyle.width}px;animation-duration:${ApplyStyle.speed}s;animation-delay:${delay}s`);
+                        s.setAttribute('snake-head-color', ApplyStyle.color2)
+                        s.setAttribute('snake-tail-color', ApplyStyle.color1)
+                        s.style.background = `linear-gradient(to top, ${ApplyStyle.color1},${ApplyStyle.color2})`
                         break;
         
                         case 3:
-                        s.setAttribute('style', `height: ${ApplyStyle.width}px;background:linear-gradient(to left, ${ApplyStyle.color1},${ApplyStyle.color2});animation-duration:${ApplyStyle.speed}s;`);
+                        s.setAttribute('style', `height: ${ApplyStyle.width}px;animation-duration:${ApplyStyle.speed}s;`);
+                        s.setAttribute('snake-head-color', ApplyStyle.color2)
+                        s.setAttribute('snake-tail-color', ApplyStyle.color1)
+                        s.style.background = `linear-gradient(to left, ${ApplyStyle.color1},${ApplyStyle.color2})`
                         break;
         
                         case 2:
-                        s.setAttribute('style', `width:${ApplyStyle.width}px;background:linear-gradient(to bottom, ${ApplyStyle.color1},${ApplyStyle.color2});animation-duration:${ApplyStyle.speed}s;animation-delay:${delay}s`);
+                        s.setAttribute('style', `width:${ApplyStyle.width}px;animation-duration:${ApplyStyle.speed}s;animation-delay:${delay}s`);
+                        s.setAttribute('snake-head-color', ApplyStyle.color2)
+                        s.setAttribute('snake-tail-color', ApplyStyle.color1)
+                        s.style.background = `linear-gradient(to bottom, ${ApplyStyle.color1},${ApplyStyle.color2})`
                         break;
         
                         case 1:
-                        s.setAttribute('style', `height: ${ApplyStyle.width}px;background:linear-gradient(to right, ${ApplyStyle.color1},${ApplyStyle.color2});animation-duration:${ApplyStyle.speed}s;`);
+                        s.setAttribute('style', `height: ${ApplyStyle.width}px;animation-duration:${ApplyStyle.speed}s;`);
+                        s.setAttribute('snake-head-color', ApplyStyle.color2)
+                        s.setAttribute('snake-tail-color', ApplyStyle.color1)
+                        s.style.background = `linear-gradient(to right, ${ApplyStyle.color1},${ApplyStyle.color2})`
                         break;
                     }
                 e.insertBefore(s, e[0])
@@ -97,6 +109,7 @@ const snakeBorder = {
     },
     changeColor: function (param = {}) {
         var arg = {
+            elem   : 'snake-border',
             color1 : 'no_value',
             color2 : 'no_value',
             width  : -1,
@@ -105,8 +118,50 @@ const snakeBorder = {
 
         Object.assign(arg, param)
 
-        function changeStyle (el) {
-            console.log(arg)
+        if ( arg.elem.startsWith('#') ) {
+            changeStyle(document.querySelector(`${arg.elem}`))
+    
+        } else {
+            Array.prototype.forEach.call(document.getElementsByClassName(`${arg.elem}`), el => {
+                changeStyle(el)
+            })
+        }
+
+
+        function changeStyle (e) {
+            if (arg.color1 != 'no_value') {
+                for (x = 4; x > 0; x--) {
+                    var snake = e.querySelector(`.snake-${x}`)
+                    snake.setAttribute('snake-tail-color', arg.color1)
+                }
+            }
+            if (arg.color2 != 'no_value') {
+                for (x = 4; x > 0; x--) {
+                    var snake = e.querySelector(`.snake-${x}`)
+                    snake.setAttribute('snake-head-color', arg.color2)
+                }
+            }
+            for (y = 4; y > 0; y--) {
+                var snake = e.querySelector(`.snake-${y}`)
+                switch (y) {
+                    case 4:
+                    snake.style.background = `linear-gradient(to top, ${snake.getAttribute('snake-tail-color')},${snake.getAttribute('snake-head-color')})`
+                    break;
+
+                    case 3:
+                    snake.style.background = `linear-gradient(to left, ${snake.getAttribute('snake-tail-color')},${snake.getAttribute('snake-head-color')})`
+                    break;
+
+                    case 2:
+                    snake.style.background = `linear-gradient(to bottom, ${snake.getAttribute('snake-tail-color')},${snake.getAttribute('snake-head-color')})`
+                    break;
+
+                    case 1:
+                    snake.style.background = `linear-gradient(to right, ${snake.getAttribute('snake-tail-color')},${snake.getAttribute('snake-head-color')})`
+                    break;
+                }
+            }
+
         }
     }
 }
