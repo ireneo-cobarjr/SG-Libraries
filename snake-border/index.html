@@ -54,7 +54,7 @@
     </head>
     <body>
         <div class="container">
-            <div id="test">
+            <div id="test" class="test">
                 <button class="btn">
                     <div class="glisten"></div>
                     <span>Hello!</span>
@@ -67,15 +67,15 @@
         <script>
             document.addEventListener("DOMContentLoaded", function() {
 
-                snakeBorder.set({elem: '#test', color2: '#81D4FA', color1: '#E1F5FE'});
+                var instance = new SnakeBorder({elem: 'test', color2: '#81D4FA', color1: '#E1F5FE'});
+                var ev = document.querySelector('#test')
                 var set = true
-                var btn = document.querySelector('.btn')
-                btn.addEventListener('click', () => {
+                ev.addEventListener('click', () => {
                     if (set) {
-                        snakeBorder.unSet('#test')
+                        instance.destroy()
                         set = !set
                     } else {
-                        snakeBorder.set({elem: '#test', color2: '#81D4FA', color1: '#E1F5FE'});
+                        instance = new SnakeBorder({elem: 'test', color2: '#81D4FA', color1: '#E1F5FE'});
                         set = !set
                     }
                 })
@@ -83,10 +83,10 @@
                 var changeColorStatus = true
                 changeColor.addEventListener('click', () => {
                     if (changeColorStatus) {
-                        snakeBorder.changeColor({elem: '#test', color2: '#00E676', color1: '#E8F5E9'})
+                        instance.changeColor({head: '#00E676', tail: '#E8F5E9'})
                         changeColorStatus = !changeColorStatus
                     } else {
-                        snakeBorder.changeColor({elem: '#test', color2: '#81D4FA', color1: '#E1F5FE'})
+                        instance.changeColor({head: '#81D4FA', tail: '#E1F5FE'})
                         changeColorStatus = !changeColorStatus
                     }
                 })
