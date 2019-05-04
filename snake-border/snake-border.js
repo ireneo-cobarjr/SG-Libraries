@@ -1,67 +1,41 @@
-function __AddClass (x, className) {
-    var name, arr;
-    if (x.classList) {
-        x.classList.add(className);
-    } else {
-        name = className;
-        arr = x.className.split(" ");
-        if (arr.indexOf(name) == -1) {
-            x.className += " " + name;
-        }
-    } 
-}
-
-function __RemoveClass (x, className) {
-    var name, arr;
-    if (x.classList) {
-        x.classList.remove(className);
-    } else {
-        name = className;
-        arr = x.className.split(" ");
-        if (arr.indexOf(name) != -1) {
-            x.replace(name, '')
-        }
-    } 
-}
-
 function __Snake(args) {
-    this.pt = args.pt
-    this.pn = args.pn
+    this.pt = args.pt;
+    this.pn = args.pn;
 
-    this.instance = document.createElement('div')
-    __AddClass(this.instance, `snake-${this.pn}`)
+    this.instance = document.createElement('div');
+    (this.instance).classList.add(`snake-${this.pn}`);
 
     switch (this.pn) {
         case 1:
-        this.w = 'height'
-        this.dn = 'right'
+        this.w = 'height';
+        this.dn = 'right';
         break;
 
         case 2:
-        this.w = 'width'
-        this.dn = 'bottom'
+        this.w = 'width';
+        this.dn = 'bottom';
         break;
 
         case 3:
-        this.w = 'height'
-        this.dn = 'left'
+        this.w = 'height';
+        this.dn = 'left';
         break;
 
         case 4:
-        this.w = 'width'
-        this.dn = 'top'
+        this.w = 'width';
+        this.dn = 'top';
         break;
     }
 
     this.setColor = function (c1,c2) {
-        (this.instance).style.background = `linear-gradient(to ${this.dn}, ${c1},${c2})`
+        (this.instance).style.background = `linear-gradient(to ${this.dn}, ${c1},${c2})`;
     }
     this.setWidth = function (w) {
-        (this.instance).style[`${this.w}`] = `${w}px`
+        (this.instance).style[`${this.w}`] = `${w}px`;
     }
     this.setSpeed = function (s) {
         if (this.pn == 4 || this.pn == 2) {(this.instance).style.animationDelay = `${s / 2}s`}
-        (this.instance).style.animationDuration = `${s}s`
+        (this.instance).style.animationDuration = `${s}s`;
     }
 
     this.setColor(args.tail, args.head);
@@ -81,7 +55,7 @@ function SnakeBorder(param = {}) {
         speed  : 2
     } 
 
-    Object.assign(args, param)
+    Object.assign(args, param);
 
     this.head = args.color2;
     this.tail = args.color1;
@@ -115,7 +89,7 @@ function SnakeBorder(param = {}) {
             })
             this.snakes.push(snake)
         }
-        __AddClass(e,'snake-border')
+        e.classList.add('snake-border')
     })
 
     this.destroy = function () {
@@ -123,7 +97,7 @@ function SnakeBorder(param = {}) {
             this.snakes.forEach(s => {
                 e.removeChild(s.instance)
             })
-            __RemoveClass(e, 'snake-border')
+            e.classList.remove( 'snake-border')
         })
     }
 
