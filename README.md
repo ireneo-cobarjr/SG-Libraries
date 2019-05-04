@@ -8,7 +8,7 @@ There is nothing much here at the moment, but Ill be adding more content later o
 
 #### Minifying css and js
 
-1. Install [node.js](https://nodejs.org).
+1. Install [node.js](https://nodejs.org)l.
 2. Install gulp globally.
 ```
 npm install gulp-cli -g
@@ -17,14 +17,22 @@ npm install gulp-cli -g
 ```
 npm install
 ```
-4. run gulpfile
+4. run gulpfile to build and minify
 ```
 gulp
 ```
 5. Output files are located in the 'dist' folder.
 
->Sass '.scss' files are included on each effects/resources but converting them to regular '.css' files are not included on the gulpfile tasks. Why? Because I have sass locally installed and i prefer it that why. They are only included in case someone wants to modify them.
- 
+6. Open demo.html; located in the root directory, on your browser to check that everything works.
+
+#### Development
+```
+gulp dev
+```
+> Alternatively, you may run 'gulp {design/effect}-dev'
+
+This will watch changes on the files and recompile it. Useful if you want to make changes and see it directly thru the demo.html page.
+
 
 
 
