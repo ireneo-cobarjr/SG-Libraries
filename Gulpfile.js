@@ -1,14 +1,17 @@
 'use strict';
 
-var del = require('del');
+const del = require('del');
 const gulp = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const terser = require('gulp-terser');
 const rename = require("gulp-rename");
+const browserSnyc = require('browser-sync').create();
 var sass = require('gulp-sass');
  
 sass.compiler = require('node-sass');
+
+var ServerRunning = false;
 
 ///////////////////////////////////////////////////////
 // Cleaning utilities
@@ -28,6 +31,7 @@ gulp.task('minify-snake-border-css', () => {
         .pipe(cleanCSS({compatibility: '*'}))
         .pipe(rename("snake-border.min.css"))
         .pipe(gulp.dest('dist/snake-border'))
+        .pipe(browserSnyc.stream())
 });
 
 gulp.task('minify-snake-border-js', function() {
@@ -35,13 +39,6 @@ gulp.task('minify-snake-border-js', function() {
       .pipe(terser())
       .pipe(rename("snake-border.min.js"))
       .pipe(gulp.dest('dist/snake-border'))
-});
-
-gulp.task('watch-snake-border-scss', function () {
-    return gulp.watch('snake-border/snake-border.scss', gulp.series('minify-snake-border-css'));
-});
-gulp.task('watch-snake-border-js', function () {
-    return gulp.watch('snake-border/snake-border.js', gulp.series('minify-snake-border-js'));
 });
 
     gulp.task('snake-border',
@@ -52,6 +49,31 @@ gulp.task('watch-snake-border-js', function () {
             )
         )
     );
+        function snakeBorderSetDev() {
+            // SnakeBorderDev = true;
+        }
+
+///////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////
+// Browser integration
+
+gulp.task('serve', function () {
+    if (!ServerRunning) {
+        browserSnyc.init({
+            server: {
+                baseDir: './'
+            }
+        });
+        ServerRunning = true;
+        gulp.watch('./*.html').on('change', browserSnyc.reload);
+        gulp.watch('snake-border/snake-border.scss', gulp.series('minify-snake-border-css'));
+        gulp.watch('snake-border/snake-border.js', gulp.series('minify-snake-border-js', 'server-reload'));
+    }
+});
+
+gulp.task('server-reload', browserSnyc.reload);
+
 ///////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////
@@ -59,16 +81,9 @@ gulp.task('watch-snake-border-js', function () {
     gulp.task('snake-border-dev',
         gulp.series(
             'snake-border-clean',
-            gulp.parallel(
-                gulp.series(
-                    'minify-snake-border-js',
-                    'watch-snake-border-js'
-                ),
-                gulp.series(
-                    'minify-snake-border-css',
-                    'watch-snake-border-scss'
-                )
-            )
+            'minify-snake-border-js',
+            'minify-snake-border-css',
+            'serve'
         )
     );
 
@@ -86,7 +101,8 @@ gulp.task('watch-snake-border-js', function () {
             'clean',
             gulp.parallel(
                 'snake-border'
-            )
+            ),
+            'serve'
         )
     );
 ///////////////////////////////////////////////////////
