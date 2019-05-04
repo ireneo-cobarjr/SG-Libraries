@@ -8,7 +8,7 @@ There is nothing much here at the moment, but Ill be adding more content later o
 
 #### Minifying css and js
 
-1. Install [node.js](https://nodejs.org)l.
+1. Install [node.js](https://nodejs.org).
 2. Install gulp globally.
 ```
 npm install gulp-cli -g
@@ -23,13 +23,13 @@ gulp
 ```
 5. Output files are located in the 'dist' folder.
 
-6. Open demo.html; located in the root directory, on your browser to check that everything works.
+6. Open demo.html on your browser to check that everything works.
 
 #### Development
 ```
 gulp dev
 ```
-> Alternatively, you may run 'gulp {design/effect}-dev'
+> Alternatively, you may run 'gulp {design/effect}-dev'. (ex. 'gulp snake-border-dev')
 
 This will watch changes on the files and recompile it. Useful if you want to make changes and see it directly thru the demo.html page.
 
