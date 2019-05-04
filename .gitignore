@@ -1,2 +1,7 @@
 # Don't track content of these folders
 snake-border/.sass-cache/
+/node_modules
+/dist
+
+# Dont track these single files
+package-lock.json
