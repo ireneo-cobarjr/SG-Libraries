@@ -1,0 +1,29 @@
+{
+  "name": "sg-libraries",
+  "version": "1.0.0",
+  "description": "A collection of reusable resources for front-end web developers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ireneo-cobarjr/SG-Libraries.git"
+  },
+  "author": "Ireneo Cobar Jr",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ireneo-cobarjr/SG-Libraries/issues"
+  },
+  "homepage": "https://github.com/ireneo-cobarjr/SG-Libraries#readme",
+  "devDependencies": {
+    "gulp": "^4.0.1",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-terser": "^1.1.7"
+  },
+  "dependencies": {
+    "del": "^4.1.1",
+    "gulp-rename": "^1.4.0"
+  }
+}
